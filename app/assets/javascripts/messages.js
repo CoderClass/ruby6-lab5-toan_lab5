@@ -21,7 +21,7 @@ window.updateMessageViaJs = function(){
   var room_id = window.location.href.match(/\/rooms\/(\d+)\/messages/);
   if (!!room_id){
     $.getScript('/rooms/'+ room_id[1] +'/messages.js', function(response){
-      console.log(response)
+      // console.log(response)
     })
     // $.getJSON('/rooms/'+ room_id[1] +'/messages.json', function(messages) {
     //   $('#messages_list').html('');
