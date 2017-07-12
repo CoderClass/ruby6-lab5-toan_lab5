@@ -1,0 +1,17 @@
+<div class="card">
+  <div class="card-header">
+    <%= @room.name %>
+  </div>
+  <div class="card-block" id="messages_list">
+    <%= render @room.messages %>
+  </div>
+  <% if current_user.present? %>
+    <div class="card-footer">
+      <%= render "form", room: @room, message: @room.messages.build %>
+    </div>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  setInterval(function(){ window.updateMessageViaJs()  }, 3000);
+</script>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lecture 4 - Chat</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-light bg-faded navbar-toggleable-md">
+      <a class="navbar-brand" href="/">Navbar</a>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="supportedContentDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+          <div class="dropdown-menu" aria-labelledby="supportedContentDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <% unless current_user.present? %>
+            <%= form_tag(login_path, class: "form-inline") do %>
+              <%= text_field_tag :username, nil, placeholder: "Enter username", class: "form-control mr-2" %>
+              <%= submit_tag "Log In", class: "btn btn-primary" %>
+            <% end %>
+          <% else %>
+            Hello, <%= current_user %>
+            <%= link_to "Log out", logout_path, {method: 'delete', class: 'btn btn-primary'} %>
+          <% end %>
+        </li>
+      </ul>
+      <form class="form-inline float-xs-right">
+        <input class="form-control" type="text" placeholder="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </nav>
+    <div class="container">
+      <%= flash_messages %>
+      <%= yield %>
+    </div>
+  </body>
+</html>
